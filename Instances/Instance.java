@@ -10,7 +10,8 @@ public abstract class Instance {
     private int Width = 50;
     private Boolean PhysicEnabled = false;
     private PhysicsVariables physicsVar;
-    ImageIcon Sprite = new ImageIcon("Images/default.png");
+    ImageIcon Sprite = new ImageIcon("Images/0.png");
+    JLabel Element;
     public Instance(String Selected_Name,int Selected_X, int Selected_Y, int Selected_Width, int Selected_Height,String DefaultSprite,Boolean PhysicEnabled){
         this.Name = Selected_Name;
         this.X = Selected_X;
@@ -20,6 +21,14 @@ public abstract class Instance {
         this.Sprite = new ImageIcon(DefaultSprite);
         this.physicsVar = new PhysicsVariables();
         this.PhysicEnabled = true;
+    }
+
+    public void SetJlabel(JLabel NewElement){
+        this.Element = NewElement;
+    }
+
+    public JLabel GetJlabel(){
+        return this.Element;
     }
     public void SetX(int nX){
         this.X = nX;
@@ -47,12 +56,13 @@ public abstract class Instance {
     public ImageIcon GetSprite(){
         return Sprite;
     }
+    public void SetSprite(ImageIcon NewSprite){this.Sprite = NewSprite;}
 
     public Boolean GetPhysicEnabled(){
         return PhysicEnabled;
     }
 
-    public void doAction(Boolean Left,Boolean Up,Boolean Right){};
+    public abstract void doAction(Boolean Left, Boolean Up, Boolean Right);
 
     public PhysicsVariables GetPhysicProperties(){
         return this.physicsVar;

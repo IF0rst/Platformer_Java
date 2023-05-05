@@ -1,22 +1,26 @@
 import Game.*;
 import Instances.*;
 
-import java.awt.*;
+import javax.swing.*;
 
 public class Program {
     public static void main(String[] args){
         Screen GameInstance = new Screen();
 
-        Instance Player = new Player("Player1",0,0,50,50,"Images/default.png");
-        Instance TestHitbox = new TerrainHitbox(50, 300, 520, 500, "Images/Levels/Block.png") {};
+        Instance Player = new Player("Player1",0,0,40,40, "Images/PlayerRight.png");
+        Instance Enemy = new MovingEnemy("Enemy",380,70,40,40,"Images/EnemyA1.png");
 
         GameInstance.AddInstance(Player);
-        GameInstance.AddInstance(TestHitbox);
+        GameInstance.AddInstance(Enemy);
+        GameInstance.SetCameraSubject(Player);
+
+        GameInstance.LoadMap("Levels/Data/Level1");
 
         while (true){
             GameInstance.Write();
+            GameInstance.CameraX += 1;
            try{
-               Thread.sleep(20);
+               Thread.sleep(30);
            } catch (InterruptedException e){
 
            }
